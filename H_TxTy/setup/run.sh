@@ -64,7 +64,7 @@ date_fin="`date "+%Y-%m-%d-%H-%M-%S"`"
 echo "${date_fin}" >>inforun
 echo 'Jobs finished running'>>inforun
 
-#moving to the data directory and tidying up
+#moving files to the data directory and tidying up
 dire_to_data="../data/${jobname}_${date_fin}"
 mkdir "${dire_to_data}"
 mv "${dire_to_temps}"/* "${dire_to_data}"
