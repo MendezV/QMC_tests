@@ -1,0 +1,37 @@
+ =====================================
+ Model is      : Hubbard_TxTy
+ Lattice is    : Square                                                          
+ L1            :           14
+ L2            :            2
+ # of orbitals :           28
+ Symm. decomp  :  T
+ Finite temperture version
+ Beta          :    10.000000000000000     
+ dtau,Ltrot_eff:   0.10000000000000001              100
+ t             :    1.0000000000000000     
+ ty             :    3.0000000000000000     
+ Ham_U         :    4.0000000000000000     
+ Ham_chem      :    0.0000000000000000     
+ No initial configuration
+ Sweeps                              :           20
+ Bins                                :            5
+ No CPU-time limitation 
+ Measure Int.                        :            1         100
+ Stabilization,Wrap                  :           10
+ Nstm                                :           10
+ Ltau                                :            1
+ # of interacting Ops per time slice :           28
+ Default sequential updating 
+ Number of mpi-processes :            1
+ This executable represents commit 966f22b7 of branch main.
+  Precision Green  Mean, Max :    6.9078733680370640E-011   2.0077948629289993E-007
+  Precision Phase, Max       :    0.0000000000000000     
+  Precision tau    Mean, Max :    1.8072030058655827E-011   2.4947956760407002E-007
+  Acceptance                 :   0.44584285714285715     
+  Effective Acceptance       :   0.44584285714285715     
+  Acceptance_Glob              :    0.0000000000000000     
+  Mean Phase diff Glob         :    0.0000000000000000     
+  Max  Phase diff Glob         :    0.0000000000000000     
+  Average cluster size         :    0.0000000000000000     
+  Average accepted cluster size:    0.0000000000000000     
+  CPU Time                   :    18.856191928000001     

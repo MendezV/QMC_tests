@@ -10,7 +10,7 @@
 
 #Readibg parameter file
 readarray -t transverse_hoppings < Hops.dat
-jobname="Beta_10_Lx_14_Ly_2_ty"  #JOBNAME importan to declare -has to be descriptive
+jobname="testrun"  #JOBNAME importan to declare -has to be descriptive
 
 #General info about the job
 date_in="`date "+%Y-%m-%d-%H-%M-%S"`"
