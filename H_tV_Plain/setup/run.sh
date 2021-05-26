@@ -11,8 +11,8 @@
 #Readibg parameter file
 #readarray -t transverse_hoppings < Hops.dat
 transverse_hoppings=$(awk -F= '{print $1}' Hops.dat)
-
-jobname="Plain_tV_test_Lx_14_Ly_1_ty"  #JOBNAME importan to declare -has to be descriptive
+echo ${transverse_hoppings}
+jobname="StafusaLHVO_tV_L1_28_L2_1_V"  #JOBNAME importan to declare -has to be descriptive
 
 #General info about the job
 date_in="`date "+%Y-%m-%d-%H-%M-%S"`"
@@ -34,12 +34,12 @@ for ty in ${transverse_hoppings[@]}; do
 
 	#modifying "parameter" file for the specific run
 	#and moving everything to the temp directory
-	sed "s:ham_Ty\    = 2.d0:ham_Ty\    = ${ty}.d0:g" parameters > "${dire}"/parameters
+	sed "s:ham_Vint     = 4.d0:ham_Vint\    = ${ty}d0:g" parameters > "${dire}"/parameters
 	cp seeds "${dire}"/seeds
 
 	#entering the temp directory, running and coming back
 	cd "${dire}"
-	/Users/jfmv/Programs/ALF/Prog/ALF.out &
+	/home/juan/Programs/ALF/Prog/ALF.out &
 	cd "../../../setup"
 	sleep 1
 
@@ -52,7 +52,7 @@ for ty in ${transverse_hoppings[@]}; do
 
 	dire=""${dire_to_temps}"/${jobname}_${ty}"
 	cd "${dire}"
-	/Users/jfmv/Programs/ALF/Scripts_and_Parameters_files/Start/analysis.sh &
+	/home/juan/Programs/ALF/Scripts_and_Parameters_files/Start/analysis.sh &
 	cd "../../../setup"
 	sleep 1
 

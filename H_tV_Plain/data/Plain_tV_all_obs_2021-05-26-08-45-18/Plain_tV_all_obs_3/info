@@ -1,0 +1,36 @@
+ =====================================
+ Model is      : tV_Plain
+ Lattice is    : Square                                                          
+ L1            :           14
+ L2            :            1
+ # of orbitals :           14
+ Symm. decomp  :  T
+ Finite temperture version
+ Beta          :    20.000000000000000     
+ dtau,Ltrot_eff:   0.10000000000000001              200
+ t             :    1.0000000000000000     
+ ham_Vint         :    4.0000000000000000     
+ Ham_chem      :    0.0000000000000000     
+ No initial configuration
+ Sweeps                              :           20
+ Bins                                :            5
+ No CPU-time limitation 
+ Measure Int.                        :            1         200
+ Stabilization,Wrap                  :           10
+ Nstm                                :           20
+ Ltau                                :            1
+ # of interacting Ops per time slice :           14
+ Default sequential updating 
+ Number of mpi-processes :            1
+ This executable represents commit 2e03822f of branch main.
+  Precision Green  Mean, Max :    4.6361437565994463E-012   5.8914541402506349E-008
+  Precision Phase, Max       :    0.0000000000000000     
+  Precision tau    Mean, Max :    1.1287856486328576E-012   3.9425814168936313E-008
+  Acceptance                 :   0.41944642857142855     
+  Effective Acceptance       :   0.41944642857142855     
+  Acceptance_Glob              :    0.0000000000000000     
+  Mean Phase diff Glob         :    0.0000000000000000     
+  Max  Phase diff Glob         :    0.0000000000000000     
+  Average cluster size         :    0.0000000000000000     
+  Average accepted cluster size:    0.0000000000000000     
+  CPU Time                   :    4.9702902210000000     
