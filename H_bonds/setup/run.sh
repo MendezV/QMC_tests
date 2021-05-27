@@ -12,7 +12,7 @@
 #readarray -t transverse_hoppings < Hops.dat
 transverse_hoppings=$(awk -F= '{print $1}' Hops.dat)
 echo ${transverse_hoppings}
-jobname="StafusaLHVO_tV_L1_28_L2_1_V"  #JOBNAME importan to declare -has to be descriptive
+jobname="Hubbard_BondsObser_eq_corr"  #JOBNAME importan to declare -has to be descriptive
 
 #General info about the job
 date_in="`date "+%Y-%m-%d-%H-%M-%S"`"

@@ -2,11 +2,11 @@
 !  Input variables for a general ALF run
 !---------------------------------------------------------------------------------------
 &VAR_ham_name
-ham_name = "tV_Plain"
+ham_name = "Hubbard_BondsObser"
 /
 
 &VAR_lattice               !! Parameters defining the specific lattice and base model
-L1           = 28            ! Length in direction a_1
+L1           = 10           ! Length in direction a_1
 L2           = 1           ! Length in direction a_2
 Lattice_type = "Square"     ! Sets a_1 = (1,0), a_2=(0,1), Norb=1, N_coord=2
 Model        = "Hubbard"    ! Sets the Hubbard model, to be specified in &VAR_Hubbard
@@ -115,6 +115,17 @@ Symm      = .T.             ! Whether symmetrization takes place
 /
 
 &VAR_Hubbard_Plain_Vanilla  !! Variables for the specific model
+ham_T     = 1.d0            ! Hopping parameter
+ham_chem  = 0.d0            ! Chemical potential
+ham_U     = 4.d0            ! Hubbard interaction
+Dtau      = 0.1d0           ! Thereby Ltrot=Beta/dtau
+Beta      = 20.d0            ! Inverse temperature
+Projector = .F.             ! Whether the projective algorithm is used
+Theta     = 10.d0           ! Projection parameter
+Symm      = .T.             ! Whether symmetrization takes place
+/
+
+&VAR_Hubbard_BondsObser  !! Variables for the specific model
 ham_T     = 1.d0            ! Hopping parameter
 ham_chem  = 0.d0            ! Chemical potential
 ham_U     = 4.d0            ! Hubbard interaction
