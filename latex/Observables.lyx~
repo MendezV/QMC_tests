@@ -235,12 +235,8 @@ In fortran language, we get for the correlator without the connected part
 \begin_inset Formula 
 \begin{align*}
 \text{\texttt{obs}}\left\langle S_{i}^{z}S_{j}^{z}\right\rangle  & =4\left\langle S_{i}^{z}S_{j}^{z}\right\rangle \\
- & =\text{\texttt{GR}\left(i,j,1\right)}\text{\texttt{GRC}\left(i,j,1\right)}+\text{\texttt{GR}\left(i,j,2\right)}\text{\texttt{GRC}\left(i,j,2\right)}\\
- & -\left(\text{\texttt{GR}\left(i,i,1\right)}-\text{\texttt{GR}\left(i,i,2\right)}\right)\left(\text{\texttt{GR}\left(j,j,1\right)}-\text{\texttt{GR}\left(j,j,2\right)}\right)\\
- & =\text{\texttt{GR}\left(i,j,1\right)}\text{\texttt{GRC}\left(i,j,1\right)}+\text{\texttt{GR}\left(i,j,2\right)}\text{\texttt{GRC}\left(i,j,2\right)}\\
- & -\left(1-\text{\texttt{GRC}\left(i,i,1\right)}-1+\text{\texttt{GRC}\left(i,i,2\right)}\right)\left(1-\text{\texttt{GRC}\left(j,j,1\right)}-1+\text{\texttt{GRC}\left(j,j,2\right)}\right)\\
- & =\text{\texttt{GR}\left(i,j,1\right)}\text{\texttt{GRC}\left(i,j,1\right)}+\text{\texttt{GR}\left(i,j,2\right)}\text{\texttt{GRC}\left(i,j,2\right)}\\
- & +\left(\text{\texttt{GRC}\left(i,i,2\right)}-\text{\texttt{GRC}\left(i,i,1\right)}\right)\left(\text{\texttt{GRC}\left(j,j,2\right)}-\text{\texttt{GRC}\left(j,j,1\right)}\right)
+ & =\text{\texttt{GRC}\left(i,j,1\right)}\text{\texttt{GR}\left(i,j,1\right)}+\text{\texttt{GRC}\left(i,j,2\right)}\text{\texttt{GR}\left(i,j,2\right)}\\
+ & -\left(\text{\texttt{GRC}\left(i,i,1\right)}-\text{\texttt{GRC}\left(i,i,2\right)}\right)\left(\text{\texttt{GRC}\left(j,j,1\right)}-\text{\texttt{GRC}\left(j,j,2\right)}\right)
 \end{align*}
 
 \end_inset
@@ -501,9 +497,20 @@ O_{i,x}=\sum_{s}c_{is}^{\dagger}c_{i+xs}+c_{i+xs}^{\dagger}c_{is}
 
 
 \begin_inset Formula 
-\[
-\left\langle O_{i,x}O_{i',x'}\right\rangle =\sum_{ss'}\left\langle \left(c_{is}^{\dagger}c_{i+xs}+c_{i+xs}^{\dagger}c_{is}\right)\left(c_{i's}^{\dagger}c_{i'+x's}+c_{i'+x's}^{\dagger}c_{i's'}\right)\right\rangle 
-\]
+\begin{align*}
+\left\langle O_{i,x}O_{i',x'}\right\rangle  & =\sum_{ss'}\left\langle \left(c_{is}^{\dagger}c_{i+xs}+c_{i+xs}^{\dagger}c_{is}\right)\left(c_{i's'}^{\dagger}c_{i'+x's'}+c_{i'+x's'}^{\dagger}c_{i's'}\right)\right\rangle \\
+ & =\sum_{ss'}\left\langle c_{is}^{\dagger}c_{i+xs}c_{i's'}^{\dagger}c_{i'+x's'}\right\rangle +\sum_{ss'}\left\langle c_{is}^{\dagger}c_{i+xs}c_{i'+x's'}^{\dagger}c_{i's'}\right\rangle \\
+ & +\sum_{ss'}\left\langle c_{i+xs}^{\dagger}c_{is}c_{i's'}^{\dagger}c_{i'+x's'}\right\rangle +\sum_{ss'}\left\langle c_{i+xs}^{\dagger}c_{is}c_{i'+x's'}^{\dagger}c_{i's'}\right\rangle \\
+\\
+ & =\sum_{ss'}\left\langle c_{is}^{\dagger}c_{i'+x's'}\right\rangle \left\langle c_{i+xs}c_{i's'}^{\dagger}\right\rangle +\left\langle c_{is}^{\dagger}c_{i+xs}\right\rangle \left\langle c_{i's'}^{\dagger}c_{i'+x's'}\right\rangle +\left\langle c_{is}^{\dagger}c_{i's'}\right\rangle \left\langle c_{i+xs}c_{i'+x's'}^{\dagger}\right\rangle +\left\langle c_{is}^{\dagger}c_{i+xs}\right\rangle \left\langle c_{i'+x's'}^{\dagger}c_{i's'}\right\rangle \\
+ & +\sum_{ss'}\left\langle c_{i+xs}^{\dagger}c_{i'+x's'}\right\rangle \left\langle c_{is}c_{i's'}^{\dagger}\right\rangle +\left\langle c_{i+xs}^{\dagger}c_{is}\right\rangle \left\langle c_{i's'}^{\dagger}c_{i'+x's'}\right\rangle +\left\langle c_{i+xs}^{\dagger}c_{i's'}\right\rangle \left\langle c_{is}c_{i'+x's'}^{\dagger}\right\rangle +\left\langle c_{i+xs}^{\dagger}c_{is}\right\rangle \left\langle c_{i'+x's'}^{\dagger}c_{i's'}\right\rangle \\
+\\
+ & =\sum_{ss'}\left\langle c_{is}^{\dagger}c_{i'+x's'}\right\rangle \left\langle c_{i+xs}c_{i's'}^{\dagger}\right\rangle +\left\langle c_{i+xs}^{\dagger}c_{i'+x's'}\right\rangle \left\langle c_{is}c_{i's'}^{\dagger}\right\rangle +\left\langle c_{i+xs}^{\dagger}c_{i's'}\right\rangle \left\langle c_{is}c_{i'+x's'}^{\dagger}\right\rangle +\left\langle c_{is}^{\dagger}c_{i's'}\right\rangle \left\langle c_{i+xs}c_{i'+x's'}^{\dagger}\right\rangle \\
+ & +\sum_{ss'}\left\langle c_{i+xs}^{\dagger}c_{is}\right\rangle \left\langle c_{i's'}^{\dagger}c_{i'+x's'}\right\rangle +\left\langle c_{is}^{\dagger}c_{i+xs}\right\rangle \left\langle c_{i's'}^{\dagger}c_{i'+x's'}\right\rangle +\left\langle c_{is}^{\dagger}c_{i+xs}\right\rangle \left\langle c_{i'+x's'}^{\dagger}c_{i's'}\right\rangle +\left\langle c_{i+xs}^{\dagger}c_{is}\right\rangle \left\langle c_{i'+x's'}^{\dagger}c_{i's'}\right\rangle \\
+\\
+ & =\sum_{s}\left\langle c_{is}^{\dagger}c_{i'+x's}\right\rangle \left\langle c_{i+xs}c_{i's}^{\dagger}\right\rangle +\left\langle c_{i+xs}^{\dagger}c_{i'+x's}\right\rangle \left\langle c_{is}c_{i's}^{\dagger}\right\rangle +\left\langle c_{i+xs}^{\dagger}c_{i's}\right\rangle \left\langle c_{is}c_{i'+x's}^{\dagger}\right\rangle +\left\langle c_{is}^{\dagger}c_{i's}\right\rangle \left\langle c_{i+xs}c_{i'+x's}^{\dagger}\right\rangle \\
+ & +\left(\sum_{s}\left\langle c_{i+xs}^{\dagger}c_{is}\right\rangle +\left\langle c_{is}^{\dagger}c_{i+xs}\right\rangle \right)\left(\sum_{s'}\left\langle c_{i's'}^{\dagger}c_{i'+x's'}\right\rangle +\left\langle c_{i'+x's'}^{\dagger}c_{i's'}\right\rangle \right)
+\end{align*}
 
 \end_inset
 

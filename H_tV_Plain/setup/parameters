@@ -22,7 +22,7 @@ Phi_Y        = 0.d0         ! Twist along the L_2 direction, in units of the flu
 Bulk         = .T.          ! Twist as a vector potential (.T.), or at the boundary (.F.)
 N_Phi        = 0            ! Total number of flux quanta traversing the lattice
 Dtau         = 0.1d0        ! Thereby Ltrot=Beta/dtau
-Beta         = 20.d0         ! Inverse temperature
+Beta         = 5.d0         ! Inverse temperature
 Projector    = .F.          ! Whether the projective algorithm is used
 Theta        = 10.d0        ! Projection parameter
 /

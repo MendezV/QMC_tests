@@ -13,7 +13,7 @@
 transverse_hoppings=$(awk -F= '{print $1}' Hops.dat)
 echo ${transverse_hoppings}
 
-jobname="Plain_tV_test_Lx_14_Ly_1_ty"  #JOBNAME importan to declare -has to be descriptive
+jobname="my_bonds"  #JOBNAME importan to declare -has to be descriptive
 
 #General info about the job
 date_in="`date "+%Y-%m-%d-%H-%M-%S"`"
@@ -35,7 +35,7 @@ for ty in ${transverse_hoppings[@]}; do
 
 	#modifying "parameter" file for the specific run
 	#and moving everything to the temp directory
-	sed "s:ham_Ty\    = 2.d0:ham_Ty\    = ${ty}.d0:g" parameters > "${dire}"/parameters
+	sed "s:Beta\      = 5.d0:Beta\      = ${ty}.d0:g" parameters > "${dire}"/parameters
 	cp seeds "${dire}"/seeds
 
 	#entering the temp directory, running and coming back
