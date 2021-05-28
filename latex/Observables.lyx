@@ -80,6 +80,10 @@ Observables for DQMC
 \end_layout
 
 \begin_layout Section
+Equal time observables
+\end_layout
+
+\begin_layout Subsection
 \begin_inset Formula $S_{Z}$
 \end_inset
 
@@ -231,6 +235,29 @@ the connceted correlation becomes
 \end_layout
 
 \begin_layout Standard
+In terms of Fortran code we have at our disposal the functions
+\begin_inset Formula 
+\[
+\mathtt{GR}(i,j,s)=\left\langle c_{is}c_{js}^{\dagger}\right\rangle 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathtt{GRC}(i,j,s)=\left\langle c_{is}^{\dagger}c_{js}\right\rangle 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 In fortran language, we get for the correlator without the connected part
 \begin_inset Formula 
 \begin{align*}
@@ -275,7 +302,7 @@ the code assumes from the start that the correlation functions are homogeneous
  and only depend on the difference i-j
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 \begin_inset Formula $n$
 \end_inset
 
@@ -391,7 +418,7 @@ Coding this into fortran, we get
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Spin 
 \begin_inset Formula $XY$
 \end_inset
@@ -462,7 +489,7 @@ Using the result for the spin z component right before contracting the pauli
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Total spin
 \end_layout
 
@@ -479,7 +506,7 @@ Since the observables have awkward factors of two lying around we have
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Kinetic energy
 \end_layout
 
@@ -530,6 +557,423 @@ The fortran definition of the above observable would be given by
 \begin{align*}
 \text{\texttt{obs}}\left\langle O_{i,x}O_{j,x}\right\rangle  & =\sum_{s}\mathtt{GRC}\left(i,jx,s\right)\mathtt{GR}\left(ix,j,s\right)+\mathtt{GRC}\left(ix,jx,s\right)\mathtt{GR}\left(i,j,s\right)+\mathtt{GRC}\left(ix,j,s\right)\mathtt{GR}\left(i,jx,s\right)+\mathtt{GRC}\left(i,j,s\right)\mathtt{GR}\left(ix,jx,s\right)\\
  & +\left(\sum_{s}\mathtt{GRC}\left(ix,i,s\right)+\mathtt{GRC}\left(i,ix,s\right)\right)\left(\sum_{s'}\mathtt{GRC}\left(jx,j,s'\right)+\mathtt{GRC}\left(j,jx,s'\right)\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Current 
+\end_layout
+
+\begin_layout Standard
+we have the following observable
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+J_{i,x}=i\sum_{s}\left(c_{is}^{\dagger}c_{i+xs}-c_{i+xs}^{\dagger}c_{is}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\left\langle O_{i,x}O_{i',x'}\right\rangle  & =-\sum_{ss'}\left\langle \left(c_{is}^{\dagger}c_{i+xs}-c_{i+xs}^{\dagger}c_{is}\right)\left(c_{i's'}^{\dagger}c_{i'+x's'}-c_{i'+x's'}^{\dagger}c_{i's'}\right)\right\rangle \\
+ & =-\sum_{ss'}\left\langle c_{is}^{\dagger}c_{i+xs}c_{i's'}^{\dagger}c_{i'+x's'}\right\rangle +\sum_{ss'}\left\langle c_{is}^{\dagger}c_{i+xs}c_{i'+x's'}^{\dagger}c_{i's'}\right\rangle \\
+ & +\sum_{ss'}\left\langle c_{i+xs}^{\dagger}c_{is}c_{i's'}^{\dagger}c_{i'+x's'}\right\rangle -\sum_{ss'}\left\langle c_{i+xs}^{\dagger}c_{is}c_{i'+x's'}^{\dagger}c_{i's'}\right\rangle \\
+\\
+ & =\sum_{ss'}\left\langle c_{is}^{\dagger}c_{i'+x's'}\right\rangle \left\langle c_{i+xs}c_{i's'}^{\dagger}\right\rangle +\left\langle c_{is}^{\dagger}c_{i+xs}\right\rangle \left\langle c_{i's'}^{\dagger}c_{i'+x's'}\right\rangle +\left\langle c_{is}^{\dagger}c_{i's'}\right\rangle \left\langle c_{i+xs}c_{i'+x's'}^{\dagger}\right\rangle +\left\langle c_{is}^{\dagger}c_{i+xs}\right\rangle \left\langle c_{i'+x's'}^{\dagger}c_{i's'}\right\rangle \\
+ & +\sum_{ss'}\left\langle c_{i+xs}^{\dagger}c_{i'+x's'}\right\rangle \left\langle c_{is}c_{i's'}^{\dagger}\right\rangle +\left\langle c_{i+xs}^{\dagger}c_{is}\right\rangle \left\langle c_{i's'}^{\dagger}c_{i'+x's'}\right\rangle +\left\langle c_{i+xs}^{\dagger}c_{i's'}\right\rangle \left\langle c_{is}c_{i'+x's'}^{\dagger}\right\rangle +\left\langle c_{i+xs}^{\dagger}c_{is}\right\rangle \left\langle c_{i'+x's'}^{\dagger}c_{i's'}\right\rangle \\
+\\
+ & =\sum_{ss'}\left\langle c_{is}^{\dagger}c_{i'+x's'}\right\rangle \left\langle c_{i+xs}c_{i's'}^{\dagger}\right\rangle +\left\langle c_{i+xs}^{\dagger}c_{i'+x's'}\right\rangle \left\langle c_{is}c_{i's'}^{\dagger}\right\rangle +\left\langle c_{i+xs}^{\dagger}c_{i's'}\right\rangle \left\langle c_{is}c_{i'+x's'}^{\dagger}\right\rangle +\left\langle c_{is}^{\dagger}c_{i's'}\right\rangle \left\langle c_{i+xs}c_{i'+x's'}^{\dagger}\right\rangle \\
+ & +\sum_{ss'}\left\langle c_{i+xs}^{\dagger}c_{is}\right\rangle \left\langle c_{i's'}^{\dagger}c_{i'+x's'}\right\rangle +\left\langle c_{is}^{\dagger}c_{i+xs}\right\rangle \left\langle c_{i's'}^{\dagger}c_{i'+x's'}\right\rangle +\left\langle c_{is}^{\dagger}c_{i+xs}\right\rangle \left\langle c_{i'+x's'}^{\dagger}c_{i's'}\right\rangle +\left\langle c_{i+xs}^{\dagger}c_{is}\right\rangle \left\langle c_{i'+x's'}^{\dagger}c_{i's'}\right\rangle \\
+\\
+ & =\sum_{s}\left\langle c_{is}^{\dagger}c_{i'+x's}\right\rangle \left\langle c_{i+xs}c_{i's}^{\dagger}\right\rangle +\left\langle c_{i+xs}^{\dagger}c_{i'+x's}\right\rangle \left\langle c_{is}c_{i's}^{\dagger}\right\rangle +\left\langle c_{i+xs}^{\dagger}c_{i's}\right\rangle \left\langle c_{is}c_{i'+x's}^{\dagger}\right\rangle +\left\langle c_{is}^{\dagger}c_{i's}\right\rangle \left\langle c_{i+xs}c_{i'+x's}^{\dagger}\right\rangle \\
+ & +\left(\sum_{s}\left\langle c_{i+xs}^{\dagger}c_{is}\right\rangle +\left\langle c_{is}^{\dagger}c_{i+xs}\right\rangle \right)\left(\sum_{s'}\left\langle c_{i's'}^{\dagger}c_{i'+x's'}\right\rangle +\left\langle c_{i'+x's'}^{\dagger}c_{i's'}\right\rangle \right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Time displaced observables
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Spin Z
+\end_layout
+
+\begin_layout Standard
+the definition of the operator in the correlation function is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S_{i}^{z}=\frac{1}{2}c_{is}^{\dagger}\sigma_{ss'}^{z}c_{is'}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+now we calculate the two-point disconnected time displaced correlator of
+ the spin 
+\begin_inset Formula 
+\[
+\left\langle \mathcal{T}S_{i}^{z}\left(\tau\right)S_{j}^{z}\left(0\right)\right\rangle 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Expanding with the definition of the operator, we get for the second term:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+4\left\langle \mathcal{T}S_{i}^{z}\left(\tau\right)S_{j}^{z}\left(0\right)\right\rangle  & =\left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)\sigma_{ss'}^{z}c_{is'}\left(\tau\right)c_{js''}^{\dagger}\sigma_{s''s'''}^{z}c_{js'''}\right\rangle \\
+ & =\sigma_{ss'}^{z}\sigma_{s''s'''}^{z}\left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{is'}\left(\tau\right)c_{js''}^{\dagger}\left(0\right)c_{js'''}\left(0\right)\right\rangle \\
+ & =\sigma_{ss'}^{z}\sigma_{s''s'''}^{z}\left(\left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{js'''}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{is'}\left(\tau\right)c_{js''}^{\dagger}\left(0\right)\right\rangle +\left\langle \mathcal{T}c_{js''}^{\dagger}\left(0\right)c_{js'''}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{is'}\left(\tau\right)\right\rangle \right)\\
+ & =\left(\sigma_{ss'}^{z}\sigma_{s's}^{z}\left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{js}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{is'}\left(\tau\right)c_{js'}^{\dagger}\left(0\right)\right\rangle +\sigma_{s's'}^{z}\sigma_{ss}^{z}\left\langle \mathcal{T}c_{js'}^{\dagger}\left(0\right)c_{js'}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{is}\left(\tau\right)\right\rangle \right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Simplifying the contraction with the pauli operators, we get
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+4\left\langle \mathcal{T}S_{i}^{z}\left(\tau\right)S_{j}^{z}\left(0\right)\right\rangle  & =\sum_{s}\left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{js}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{is}\left(\tau\right)c_{js}^{\dagger}\left(0\right)\right\rangle \\
+ & +\left(\sum_{s'}s'\left\langle \mathcal{T}c_{js'}^{\dagger}\left(0\right)c_{js'}\left(0\right)\right\rangle \right)\left(\sum_{s}s\left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{is}\left(\tau\right)\right\rangle \right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In terms of Fortran code we have at our disposal 
+\begin_inset Formula 
+\[
+\mathtt{GTO}(i,j,s)=\left\langle \mathcal{T}c_{is}\left(\tau\right)c_{js}^{\dagger}\left(0\right)\right\rangle 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathtt{GOT}(i,j,s)=\left\langle \mathcal{T}c_{is}\left(0\right)c_{js}^{\dagger}\left(\tau\right)\right\rangle 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathtt{GOO}(i,j,s)=\left\langle \mathcal{T}c_{is}\left(0\right)c_{js}^{\dagger}\left(0\right)\right\rangle 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathtt{GTT}(i,j,s)=\left\langle \mathcal{T}c_{is}\left(\tau\right)c_{js}^{\dagger}\left(\tau\right)\right\rangle 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+so we have to further massage the expression above to get it into the code.
+ We can do this by anticommuting inside the time ordering symbol for the
+ time ordered correlation functions and using the regular anticommutation
+ relations for the equal times case:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+4\left\langle \mathcal{T}S_{i}^{z}\left(\tau\right)S_{j}^{z}\left(0\right)\right\rangle  & =-\sum_{s}\left\langle \mathcal{T}c_{js}\left(0\right)c_{is}^{\dagger}\left(\tau\right)\right\rangle \left\langle \mathcal{T}c_{is}\left(\tau\right)c_{js}^{\dagger}\left(0\right)\right\rangle \\
+ & +\left(\sum_{s'}s'\left(1-\left\langle \mathcal{T}c_{js'}\left(0\right)c_{js'}^{\dagger}\left(0\right)\right\rangle \right)\right)\left(\sum_{s}s\left(1-\left\langle \mathcal{T}c_{is}\left(\tau\right)c_{is}^{\dagger}\left(\tau\right)\right\rangle \right)\right)\\
+ & =-\sum_{s}\left\langle \mathcal{T}c_{js}\left(0\right)c_{is}^{\dagger}\left(\tau\right)\right\rangle \left\langle \mathcal{T}c_{is}\left(\tau\right)c_{js}^{\dagger}\left(0\right)\right\rangle \\
+ & +\left(\sum_{s'}s'\left\langle \mathcal{T}c_{js'}\left(0\right)c_{js'}^{\dagger}\left(0\right)\right\rangle \right)\left(\sum_{s}s\left\langle \mathcal{T}c_{is}\left(\tau\right)c_{is}^{\dagger}\left(\tau\right)\right\rangle \right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Here the constant term in the second line of the first equality vanished
+ when we sum over spins.
+ Translating this into fortran, we get
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\text{\texttt{obs}}(Z,i,j,\tau) & =-\sum_{s}\mathtt{GOT}\left(j,i,s\right)\mathtt{GTO}\left(i,j,s\right)\\
+ & +\left(\sum_{s'}s\mathtt{GOO}\left(j,j,s\right)\right)\left(\sum_{s}s\mathtt{GTT}\left(j,j,s\right)\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Spin XY
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+2\left(\left\langle \mathcal{T}S_{i}^{x}\left(\tau\right)S_{j}^{x}\left(0\right)\right\rangle +\left\langle \mathcal{T}S_{i}^{y}\left(\tau\right)S_{j}^{y}\left(0\right)\right\rangle \right) & =\frac{1}{2}\left(\sigma_{ss'}^{x}\sigma_{s's}^{x}\left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{js}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{is'}\left(\tau\right)c_{js'}^{\dagger}\left(0\right)\right\rangle +\sigma_{s's'}^{x}\sigma_{ss}^{x}\left\langle \mathcal{T}c_{js'}^{\dagger}\left(0\right)c_{js'}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{is}\left(\tau\right)\right\rangle \right)\\
+ & +\frac{1}{2}\left(\sigma_{ss'}^{y}\sigma_{s's}^{y}\left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{js}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{is'}\left(\tau\right)c_{js'}^{\dagger}\left(0\right)\right\rangle +\sigma_{s's'}^{y}\sigma_{ss}^{y}\left\langle \mathcal{T}c_{js'}^{\dagger}\left(0\right)c_{js'}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{is}\left(\tau\right)\right\rangle \right)\\
+\\
+ & =\frac{1}{2}\left(\sigma_{ss'}^{x}\sigma_{s's}^{x}\left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{js}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{is'}\left(\tau\right)c_{js'}^{\dagger}\left(0\right)\right\rangle \right)\\
+ & +\frac{1}{2}\left(\sigma_{ss'}^{y}\sigma_{s's}^{y}\left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{js}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{is'}\left(\tau\right)c_{js'}^{\dagger}\left(0\right)\right\rangle \right)\\
+\\
+ & =\frac{1}{2}\left(\left\langle \mathcal{T}c_{i+}^{\dagger}\left(\tau\right)c_{j+}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{i-}\left(\tau\right)c_{j-}^{\dagger}\left(0\right)\right\rangle +\left\langle \mathcal{T}c_{i-}^{\dagger}\left(\tau\right)c_{j-}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{i+}\left(\tau\right)c_{j+}^{\dagger}\left(0\right)\right\rangle \right)\\
+ & +\frac{1}{2}\left(\left\langle \mathcal{T}c_{i+}^{\dagger}\left(\tau\right)c_{j+}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{i-}\left(\tau\right)c_{j-}^{\dagger}\left(0\right)\right\rangle +\left\langle \mathcal{T}c_{i-}^{\dagger}\left(\tau\right)c_{j-}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{i+}\left(\tau\right)c_{j+}^{\dagger}\left(0\right)\right\rangle \right)\\
+\\
+ & =\left\langle \mathcal{T}c_{i+}^{\dagger}\left(\tau\right)c_{j+}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{i-}\left(\tau\right)c_{j-}^{\dagger}\left(0\right)\right\rangle +\left\langle \mathcal{T}c_{i-}^{\dagger}\left(\tau\right)c_{j-}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{i+}\left(\tau\right)c_{j+}^{\dagger}\left(0\right)\right\rangle \\
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using the definitions for the time displaced greens functions we can get
+ the expression for the observable as:
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\text{\texttt{obs}}(XY,i,j,\tau)=-\mathtt{GOT}\left(j,i,+\right)\mathtt{GTO}\left(i,j,-\right)-\mathtt{GOT}\left(j,i,-\right)\mathtt{GTO}\left(i,j,+\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Total spin
+\end_layout
+
+\begin_layout Standard
+The same result from before still holds in this case since it only depended
+ on the definition of the correlation functions but not on their evaluation
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\text{\texttt{obs}}(XYZ,ij) & =\frac{4}{3}\left(\left\langle S_{i}^{x}S_{j}^{x}\right\rangle +\left\langle S_{i}^{y}S_{j}^{y}\right\rangle +\left\langle S_{i}^{z}S_{j}^{z}\right\rangle \right)\\
+ & =\frac{2\text{\texttt{obs}}(XY,ij)+\text{\texttt{obs}}(Z,ij)}{3}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+\begin_inset Formula $n$
+\end_inset
+
+ density correlations
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\left\langle \mathcal{T}n_{i}\left(\tau\right)n_{j}\left(0\right)\right\rangle  & =\left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)\delta_{ss'}c_{is'}\left(\tau\right)c_{js''}^{\dagger}\delta_{s''s'''}c_{js'''}\right\rangle \\
+ & =\delta_{ss'}\delta_{s''s'''}\left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{is'}\left(\tau\right)c_{js''}^{\dagger}\left(0\right)c_{js'''}\left(0\right)\right\rangle \\
+ & =\delta_{ss'}\delta_{s''s'''}\left(\left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{js'''}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{is'}\left(\tau\right)c_{js''}^{\dagger}\left(0\right)\right\rangle +\left\langle \mathcal{T}c_{js''}^{\dagger}\left(0\right)c_{js'''}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{is'}\left(\tau\right)\right\rangle \right)\\
+ & =\left(\delta_{ss'}\delta_{s's}\left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{js}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{is'}\left(\tau\right)c_{js'}^{\dagger}\left(0\right)\right\rangle +\delta_{s's'}\delta_{ss}\left\langle \mathcal{T}c_{js'}^{\dagger}\left(0\right)c_{js'}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{is}\left(\tau\right)\right\rangle \right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Contracting the delta functions we get:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\left\langle \mathcal{T}n_{i}\left(\tau\right)n_{j}\left(0\right)\right\rangle  & =\sum_{s}\left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{js}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{is}\left(\tau\right)c_{js}^{\dagger}\left(0\right)\right\rangle \\
+ & +\left(\sum_{s'}\left\langle \mathcal{T}c_{js'}^{\dagger}\left(0\right)c_{js'}\left(0\right)\right\rangle \right)\left(\sum_{s}\left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{is}\left(\tau\right)\right\rangle \right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Massaging this expression to get everything in terms of the code's predefined
+ structures, we get
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\left\langle \mathcal{T}n_{i}\left(\tau\right)n_{j}\left(0\right)\right\rangle  & =-\sum_{s}\left\langle \mathcal{T}c_{js}\left(0\right)c_{is}^{\dagger}\left(\tau\right)\right\rangle \left\langle \mathcal{T}c_{is}\left(\tau\right)c_{js}^{\dagger}\left(0\right)\right\rangle \\
+ & +\left(\sum_{s'}1-\left\langle \mathcal{T}c_{js'}\left(0\right)c_{js'}^{\dagger}\left(0\right)\right\rangle \right)\left(\sum_{s}1-\left\langle \mathcal{T}c_{is}\left(\tau\right)c_{is}^{\dagger}\left(\tau\right)\right\rangle \right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Kinetic energy
+\end_layout
+
+\begin_layout Standard
+For the disconnected part of the correlation function, we have:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\left\langle O_{i,x}O_{i',x'}\right\rangle  & =\sum_{s}\left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{i'+x's}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{i+xs}\left(\tau\right)c_{i's}^{\dagger}\left(0\right)\right\rangle +\left\langle \mathcal{T}c_{i+xs}^{\dagger}\left(\tau\right)c_{i'+x's}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{is}\left(\tau\right)c_{i's}^{\dagger}\left(0\right)\right\rangle \\
+ & +\sum_{s}\left\langle \mathcal{T}c_{i+xs}^{\dagger}\left(\tau\right)c_{i's}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{is}\left(\tau\right)c_{i'+x's}^{\dagger}\left(0\right)\right\rangle +\left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{i's}\left(0\right)\right\rangle \left\langle \mathcal{T}c_{i+xs}\left(\tau\right)c_{i'+x's}^{\dagger}\left(0\right)\right\rangle \\
+ & +\left(\sum_{s}\left\langle \mathcal{T}c_{i+xs}^{\dagger}\left(\tau\right)c_{is}\left(\tau\right)\right\rangle +\left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{i+xs}\left(\tau\right)\right\rangle \right)\left(\sum_{s'}\left\langle \mathcal{T}c_{i's'}^{\dagger}\left(0\right)c_{i'+x's'}\left(0\right)\right\rangle +\left\langle \mathcal{T}c_{i'+x's'}^{\dagger}\left(0\right)c_{i's'}\left(0\right)\right\rangle \right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Here, we reused our calculation from before where the primed coordinates
+ are evaluated at the initial imaginary time and the unprimed coordinates
+ are evaluated at the displaced time.
+ 
+\end_layout
+
+\begin_layout Standard
+Similar to our previous calculations we now massage this expression to get
+ the fortran expression
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\left\langle O_{i,x}O_{i',x'}\right\rangle  & =-\sum_{s}\left\langle \mathcal{T}c_{i'+x's}\left(0\right)c_{is}^{\dagger}\left(\tau\right)\right\rangle \left\langle \mathcal{T}c_{i+xs}\left(\tau\right)c_{i's}^{\dagger}\left(0\right)\right\rangle +\left\langle \mathcal{T}c_{i'+x's}\left(0\right)c_{i+xs}^{\dagger}\left(\tau\right)\right\rangle \left\langle \mathcal{T}c_{is}\left(\tau\right)c_{i's}^{\dagger}\left(0\right)\right\rangle \\
+ & -\sum_{s}\left\langle \mathcal{T}c_{i's}\left(0\right)c_{i+xs}^{\dagger}\left(\tau\right)\right\rangle \left\langle \mathcal{T}c_{is}\left(\tau\right)c_{i'+x's}^{\dagger}\left(0\right)\right\rangle +\left\langle \mathcal{T}c_{i's}\left(0\right)c_{is}^{\dagger}\left(\tau\right)\right\rangle \left\langle \mathcal{T}c_{i+xs}\left(\tau\right)c_{i'+x's}^{\dagger}\left(0\right)\right\rangle \\
+ & +\left(\sum_{s}2\delta_{i,i+x}-\left\langle \mathcal{T}c_{is}\left(\tau\right)c_{i+xs}^{\dagger}\left(\tau\right)\right\rangle -\left\langle \mathcal{T}c_{i+xs}\left(\tau\right)c_{is}^{\dagger}\left(\tau\right)\right\rangle \right)\left(\sum_{s'}2\delta_{i',i'+x'}-\left\langle \mathcal{T}c_{i'+x's'}\left(0\right)c_{i's'}^{\dagger}\left(0\right)\right\rangle -\left\langle \mathcal{T}c_{i's'}\left(0\right)c_{i'+x's'}^{\dagger}\left(0\right)\right\rangle \right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In fortran, this observable will be coded as 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\text{\texttt{obs}}\left\langle O_{i,x}O_{i',x'}\right\rangle  & =-\sum_{s}\mathtt{GOT}\left(i'x',i,s\right)\mathtt{GTO}\left(ix,i',s\right)+\mathtt{GOT}\left(i'x',ix,s\right)\mathtt{GTO}\left(i,i',s\right)+\mathtt{GOT}\left(i',ix,s\right)\mathtt{GTO}\left(i,i'x',s\right)+\mathtt{GOT}\left(i',i,s\right)\mathtt{GTO}\left(ix,i'x',s\right)\\
+ & +\left(\sum_{s}2\delta_{i,ix}-\mathtt{GTT}\left(i,ix,s\right)-\mathtt{GTT}\left(ix,i,s\right)\right)\left(\sum_{s'}2\delta_{i',i'x'}-\mathtt{GOO}\left(i'x',i',s'\right)-\mathtt{GOO}\left(i',i'x',s'\right)\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When 
+\begin_inset Formula $x=x'=+\hat{x}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\text{\texttt{obs}}\left\langle O_{i,x}O_{j,x}\right\rangle  & =-\sum_{s}\mathtt{GOT}\left(jx,i,s\right)\mathtt{GTO}\left(ix,j,s\right)+\mathtt{GOT}\left(jx,ix,s\right)\mathtt{GTO}\left(i,j,s\right)+\mathtt{GOT}\left(j,ix,s\right)\mathtt{GTO}\left(i,jx,s\right)+\mathtt{GOT}\left(j,i,s\right)\mathtt{GTO}\left(ix,jx,s\right)\\
+ & +\left(\sum_{s}\mathtt{GTT}\left(i,ix,s\right)+\mathtt{GTT}\left(ix,i,s\right)\right)\left(\sum_{s'}\mathtt{GOO}\left(jx,j,s'\right)+\mathtt{GOO}\left(j,jx,s'\right)\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, to calculate the expectation value that will enter the connected
+ part, we'll have
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\left\langle O_{i,x}\right\rangle  & =\sum_{s}\left\langle \mathcal{T}c_{is}^{\dagger}\left(\tau\right)c_{i+xs}\left(\tau\right)\right\rangle +\left\langle \mathcal{T}c_{i+xs}^{\dagger}\left(\tau\right)c_{is}\left(\tau\right)\right\rangle \\
+ & =-\sum_{s}\left\langle \mathcal{T}c_{i+xs}\left(\tau\right)c_{is}^{\dagger}\left(\tau\right)\right\rangle +\left\langle \mathcal{T}c_{is}\left(\tau\right)c_{i+xs}^{\dagger}\left(\tau\right)\right\rangle 
 \end{align*}
 
 \end_inset

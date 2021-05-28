@@ -1,0 +1,45 @@
+ =====================================
+ Model is      : Hubbard                                                         
+ Lattice is    : Square                                                          
+ # unit cells  :           28
+ # of orbitals :            1
+ Flux_1        :    0.0000000000000000     
+ Flux_2        :    0.0000000000000000     
+ Twist as phase factor in bulk
+ HS  couples to z-component of spin
+ Checkerboard  :  T
+ Symm. decomp  :  T
+ Finite temperture version
+ Beta          :    10.000000000000000     
+ dtau,Ltrot_eff:   0.10000000000000001              100
+ N_SUN         :            2
+ N_FL          :            2
+ t             :    1.0000000000000000     
+ Ham_U         :    4.0000000000000000     
+ t2            :    1.0000000000000000     
+ Ham_U2        :    4.0000000000000000     
+ Ham_tperp     :    1.0000000000000000     
+ Ham_chem      :    0.0000000000000000     
+ No initial configuration
+ Sweeps                              :           20
+ Bins                                :            5
+ No CPU-time limitation 
+ Measure Int.                        :            1         100
+ Stabilization,Wrap                  :           10
+ Nstm                                :           10
+ Ltau                                :            1
+ # of interacting Ops per time slice :           28
+ Default sequential updating 
+ Number of mpi-processes :            1
+ This executable represents commit 199caa0b of branch main.
+  Precision Green  Mean, Max :    2.0283420449771290E-011   1.8032765092441949E-007
+  Precision Phase, Max       :    0.0000000000000000     
+  Precision tau    Mean, Max :    5.9409082191502120E-012   7.5826122269972984E-008
+  Acceptance                 :   0.42912678571428570     
+  Effective Acceptance       :   0.42912678571428570     
+  Acceptance_Glob              :    0.0000000000000000     
+  Mean Phase diff Glob         :    0.0000000000000000     
+  Max  Phase diff Glob         :    0.0000000000000000     
+  Average cluster size         :    0.0000000000000000     
+  Average accepted cluster size:    0.0000000000000000     
+  CPU Time                   :    11.624983000000000     

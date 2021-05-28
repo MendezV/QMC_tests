@@ -13,7 +13,7 @@
 transverse_hoppings=$(awk -F= '{print $1}' Hops.dat)
 echo ${transverse_hoppings}
 
-jobname="my_bonds"  #JOBNAME importan to declare -has to be descriptive
+jobname="my_bonds_tau"  #JOBNAME importan to declare -has to be descriptive
 
 #General info about the job
 date_in="`date "+%Y-%m-%d-%H-%M-%S"`"
@@ -53,7 +53,10 @@ for ty in ${transverse_hoppings[@]}; do
 
 	dire=""${dire_to_temps}"/${jobname}_${ty}"
 	cd "${dire}"
-	/Users/jfmv/Programs/ALF/Scripts_and_Parameters_files/Start/analysis.sh &
+	#/Users/jfmv/Programs/ALF/Scripts_and_Parameters_files/Start/analysis.sh &
+	/Users/jfmv/Programs/ALF/Scripts_and_Parameters_files/analysis.sh &
+	#/Users/jfmv/Programs/ALF/Analysis/ana.out &
+
 	cd "../../../setup"
 	sleep 1
 
