@@ -1033,5 +1033,19 @@ Now we massage this expression into Fortran code
 
 \end_layout
 
+\begin_layout Standard
+Usign the structures defined in ALF
+\begin_inset Formula 
+\begin{align*}
+\text{\texttt{obs}}\left\langle J_{i,x}J_{i',x'}\right\rangle  & =\sum_{s}\mathtt{GOT}\left(i'x,i,s\right)\mathtt{GTO}\left(ix,i',s\right)-\mathtt{GOT}\left(i'x',ix,s\right)\mathtt{GTO}\left(i,i',s\right)\\
+ & +\sum_{s}-\mathtt{GOT}\left(i',i,s\right)\mathtt{GTO}\left(ix,i'x',s\right)+\mathtt{GOT}\left(i',ix,s\right)\mathtt{GTO}\left(i,i'x',s\right)\\
+ & +\sum_{ss'}\left(\mathtt{GTT}\left(i,ix,s\right)-\mathtt{GTT}\left(ix,i,s\right)\right)\left(\left\langle \mathcal{T}c_{i'+x's'}\left(0\right)c_{i's'}^{\dagger}\left(0\right)\right\rangle -\left\langle \mathcal{T}c_{i's'}\left(0\right)c_{i'+x's'}^{\dagger}\left(0\right)\right\rangle \right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document
