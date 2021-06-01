@@ -1,0 +1,35 @@
+ =====================================
+ Model is      : Hubbard_BondsObser
+ Lattice is    : Square                                                          
+ L1            :           10
+ L2            :           10
+ # of orbitals :          100
+ Symm. decomp  :  T
+ Finite temperture version
+ Beta          :    2.0000000000000000     
+ dtau,Ltrot_eff:   0.10000000000000001               20
+ t             :    1.0000000000000000     
+ Ham_U         :    8.0000000000000000     
+ Ham_chem      :    0.0000000000000000     
+ No initial configuration
+ Sweeps                              :           20
+ Bins                                :            5
+ No CPU-time limitation 
+ Measure Int.                        :            1          20
+ Stabilization,Wrap                  :           10
+ Nstm                                :            2
+ Ltau                                :            1
+ # of interacting Ops per time slice :          100
+ Default sequential updating 
+ This executable represents commit 6ad19605 of branch main.
+  Precision Green  Mean, Max :    1.3621597314121326E-006  0.11169861483916486     
+  Precision Phase, Max       :    0.0000000000000000     
+  Precision tau    Mean, Max :    4.1869809305696109E-007   7.5183818540736969E-002
+  Acceptance                 :   0.41825250000000003     
+  Effective Acceptance       :   0.41825250000000003     
+  Acceptance_Glob              :    0.0000000000000000     
+  Mean Phase diff Glob         :    0.0000000000000000     
+  Max  Phase diff Glob         :    0.0000000000000000     
+  Average cluster size         :    0.0000000000000000     
+  Average accepted cluster size:    0.0000000000000000     
+  CPU Time                   :    24.466228000000001     

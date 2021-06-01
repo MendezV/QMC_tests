@@ -13,7 +13,7 @@
 transverse_hoppings=$(awk -F= '{print $1}' Hops.dat)
 echo ${transverse_hoppings}
 
-jobname="1010_bonds_tau"  #JOBNAME importan to declare -has to be descriptive
+jobname="1010_staf_bonds_tau"  #JOBNAME importan to declare -has to be descriptive
 
 #General info about the job
 date_in="`date "+%Y-%m-%d-%H-%M-%S"`"
