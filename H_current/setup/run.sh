@@ -9,9 +9,9 @@
 ###########################
 
 #Readibg parameter file
-#readarray -t transverse_hoppings < Hops.dat
-transverse_hoppings=$(awk -F= '{print $1}' Hops.dat)
-echo ${transverse_hoppings}
+#readarray -t lattsizes < Hops.dat
+lattsizes=$(awk -F= '{print $1}' Hops.dat)
+echo ${lattsizes}
 jobname="Hubbard_BondsObser_eq_corr"  #JOBNAME importan to declare -has to be descriptive
 
 #General info about the job
@@ -25,16 +25,16 @@ rm -rf "${dire_to_temps}"
 mkdir "${dire_to_temps}"
 
 #loop over the parameters
-for ty in ${transverse_hoppings[@]}; do
+for Lat_L in ${lattsizes[@]}; do
 
 	#create one temporary directory per parameter
-	dire=""${dire_to_temps}"/${jobname}_${ty}"
+	dire=""${dire_to_temps}"/${jobname}_${Lat_L}"
 	rm -rf "${dire}"
 	mkdir -vp "${dire}"
 
 	#modifying "parameter" file for the specific run
 	#and moving everything to the temp directory
-	sed "s:ham_Vint     = 4.d0:ham_Vint\    = ${ty}d0:g" parameters > "${dire}"/parameters
+	sed "s:ham_Vint     = 4.d0:ham_Vint\    = ${Lat_L}d0:g" parameters > "${dire}"/parameters
 	cp seeds "${dire}"/seeds
 
 	#entering the temp directory, running and coming back
@@ -48,9 +48,9 @@ done
 wait
 
 #Loop over parameters to carry out statistical analysis
-for ty in ${transverse_hoppings[@]}; do
+for Lat_L in ${lattsizes[@]}; do
 
-	dire=""${dire_to_temps}"/${jobname}_${ty}"
+	dire=""${dire_to_temps}"/${jobname}_${Lat_L}"
 	cd "${dire}"
 	/home/juan/Programs/ALF/Scripts_and_Parameters_files/Start/analysis.sh &
 	cd "../../../setup"
