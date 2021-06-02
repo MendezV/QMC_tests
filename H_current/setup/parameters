@@ -6,8 +6,8 @@ ham_name = "Hubbard_current"
 /
 
 &VAR_lattice               !! Parameters defining the specific lattice and base model
-L1           = 4           ! Length in direction a_1
-L2           = 4           ! Length in direction a_2
+L1           = 6           ! Length in direction a_1
+L2           = 6           ! Length in direction a_2
 Lattice_type = "Square"     ! Sets a_1 = (1,0), a_2=(0,1), Norb=1, N_coord=2
 Model        = "Hubbard"    ! Sets the Hubbard model, to be specified in &VAR_Hubbard
 /

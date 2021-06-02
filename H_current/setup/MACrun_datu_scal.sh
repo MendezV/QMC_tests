@@ -15,7 +15,7 @@
 dtau_arr=$(awk -F= '{print $1}' dtaus.dat)
 echo ${dtau_arr}
 
-jobname="44_current_scal_test"  #JOBNAME importan to declare -has to be descriptive
+jobname="66_current_scal_test"  #JOBNAME importan to declare -has to be descriptive
 
 #General info about the job
 date_in="`date "+%Y-%m-%d-%H-%M-%S"`"
