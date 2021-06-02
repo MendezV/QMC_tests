@@ -42,41 +42,4 @@ for dtau_val in ${dtau_arr[@]}; do
 	rm temp_parameters
 	cp seeds "${dire}"/seeds
 
-	#entering the temp directory, running and coming back
-	cd "${dire}"
-	/Users/jfmv/Programs/ALF/Prog/ALF.out &
-	cd "../../../setup"
-	sleep 1
-
 done
-
-wait
-
-#Loop over parameters to carry out statistical analysis
-for dtau_val in ${dtau_arr[@]}; do
-
-	dire=""${dire_to_temps}"/${jobname}_${dtau_val}"
-	cd "${dire}"
-	#/Users/jfmv/Programs/ALF/Scripts_and_Parameters_files/Start/analysis.sh &
-	/Users/jfmv/Programs/ALF/Scripts_and_Parameters_files/Start/analysis.sh &
-	#/Users/jfmv/Programs/ALF/Analysis/ana.out &
-
-	cd "../../../setup"
-	sleep 1
-
-done
-
-
-wait
-
-#general info about the job as it ends
-date_fin="`date "+%Y-%m-%d-%H-%M-%S"`"
-echo "${date_fin}" >>inforun
-echo 'Jobs finished running'>>inforun
-
-#moving files to the data directory and tidying up
-dire_to_data="../data/${jobname}_${date_fin}"
-mkdir "${dire_to_data}"
-mv "${dire_to_temps}"/* "${dire_to_data}"
-mv inforun "${dire_to_data}"
-rm -r "${dire_to_temps}"
