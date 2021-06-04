@@ -6,8 +6,8 @@ ham_name = "Hubbard_current"
 /
 
 &VAR_lattice               !! Parameters defining the specific lattice and base model
-L1           = 6           ! Length in direction a_1
-L2           = 6           ! Length in direction a_2
+L1           = 8           ! Length in direction a_1
+L2           = 8           ! Length in direction a_2
 Lattice_type = "Square"     ! Sets a_1 = (1,0), a_2=(0,1), Norb=1, N_coord=2
 Model        = "Hubbard"    ! Sets the Hubbard model, to be specified in &VAR_Hubbard
 /
@@ -115,7 +115,7 @@ Symm      = .T.             ! Whether symmetrization takes place
 
 &VAR_Hubbard_current  !! Variables for the specific model
 ham_T     = 1.d0            ! Hopping parameter
-ham_chem  = 0.15d0            ! Chemical potential
+ham_chem  = -0.1d0            ! Chemical potential
 ham_U     = -4.d0            ! Hubbard interaction
 Dtau      = 0.1d0           ! Thereby Ltrot=Beta/dtau
 Beta      = 5.d0            ! Inverse temperature

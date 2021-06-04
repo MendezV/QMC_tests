@@ -1,0 +1,36 @@
+ =====================================
+ Model is      : Hubbard_current
+ Lattice is    : Square                                                          
+ L1            :            8
+ L2            :            8
+ # of orbitals :           64
+ Symm. decomp  :  T
+ Finite temperture version
+ Beta          :    8.0000000000000000     
+ dtau,Ltrot_eff:   0.10000000000000001               80
+ t             :    1.0000000000000000     
+ Ham_U         :   -4.0000000000000000     
+ Ham_chem      :   -2.0000000000000000E-002
+ No initial configuration
+ Sweeps                              :          160
+ Bins                                :           10
+ No CPU-time limitation 
+ Measure Int.                        :            1          80
+ Stabilization,Wrap                  :           10
+ Nstm                                :            8
+ Ltau                                :            1
+ # of interacting Ops per time slice :           64
+ Default sequential updating 
+ Number of mpi-processes :            1
+ This executable represents commit 04462c92 of branch main.
+  Precision Green  Mean, Max :    2.0748990601234440E-014   6.0144237106401840E-011
+  Precision Phase, Max       :    8.8817841970012523E-015
+  Precision tau    Mean, Max :    6.6832249999935610E-015   1.6055519510723844E-012
+  Acceptance                 :   0.35062139892578126     
+  Effective Acceptance       :   0.35062139892578126     
+  Acceptance_Glob              :    0.0000000000000000     
+  Mean Phase diff Glob         :    0.0000000000000000     
+  Max  Phase diff Glob         :    0.0000000000000000     
+  Average cluster size         :    0.0000000000000000     
+  Average accepted cluster size:    0.0000000000000000     
+  CPU Time                   :    3160.0175988300002     
