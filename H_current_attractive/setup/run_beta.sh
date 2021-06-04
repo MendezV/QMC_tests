@@ -11,7 +11,7 @@
 #Readibg parameter file
 #readarray -t Beta_arr < Hops.dat
 Beta_arr=$(awk -F= '{print $1}' Betas.dat)
-jobname="88_betasweeps_mu002"  #JOBNAME importan to declare -has to be descriptive
+jobname="testingcompilation"  #JOBNAME importan to declare -has to be descriptive
 
 #General info about the job
 date_in="`date "+%Y-%m-%d-%H-%M-%S"`"
@@ -38,7 +38,8 @@ for Beta_val in ${Beta_arr[@]}; do
 
 	#entering the temp directory, running and coming back
 	cd "${dire}"
-	time /home/juan/Programs/ALF/Prog/ALF.out &
+	#time /home/juan/Programs/ALF/Prog/ALF.out &
+	time /Users/jfmv/Programs/ALF/Prog/ALF.out &
 	cd "../../../setup"
 	sleep 1
 
@@ -51,7 +52,8 @@ for Beta_val in ${Beta_arr[@]}; do
 
 	dire=""${dire_to_temps}"/${jobname}_${Beta_val}"
 	cd "${dire}"
-	/home/juan/Programs/ALF/Scripts_and_Parameters_files/Start/analysis.sh &
+	#/home/juan/Programs/ALF/Scripts_and_Parameters_files/Start/analysis.sh &
+	/Users/jfmv/Programs/ALF/Scripts_and_Parameters_files/Start/analysis.sh &
 	cd "../../../setup"
 	sleep 1
 
