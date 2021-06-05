@@ -11,7 +11,7 @@
 #Readibg parameter file
 #readarray -t Beta_arr < Hops.dat
 Beta_arr=$(awk -F= '{print $1}' Betas.dat)
-jobname="testingcompilation"  #JOBNAME importan to declare -has to be descriptive
+jobname="66_mu015_nsweeps_40"  #JOBNAME importan to declare -has to be descriptive
 
 #General info about the job
 date_in="`date "+%Y-%m-%d-%H-%M-%S"`"
