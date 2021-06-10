@@ -41,7 +41,8 @@ for Lat_L in ${lattsizes[@]}; do
 
 	#entering the temp directory, running and coming back
 	cd "${dire}"
-	time /home/juan/Programs/ALF/Prog/ALF.out &
+	#time /home/juan/Programs/ALF/Prog/ALF.out &
+	time /Users/jfmv/Programs/ALF/Prog/ALF.out &
 	cd "../../../setup"
 	sleep 1
 
@@ -54,7 +55,8 @@ for Lat_L in ${lattsizes[@]}; do
 
 	dire=""${dire_to_temps}"/${jobname}_${Lat_L}"
 	cd "${dire}"
-	/home/juan/Programs/ALF/Scripts_and_Parameters_files/Start/analysis.sh &
+	#/home/juan/Programs/ALF/Scripts_and_Parameters_files/Start/analysis.sh &
+	/Users/jfmv/Programs/ALF/Scripts_and_Parameters_files/Start/analysis.sh &
 	cd "../../../setup"
 	sleep 1
 
